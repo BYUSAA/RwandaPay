@@ -1,0 +1,37 @@
+# Ignore build files
+/target/
+/bin/
+
+# Ignore Maven directories
+.mvn/
+.mvn/wrapper/maven-wrapper.jar
+
+# Ignore IntelliJ IDEA files
+.idea/
+/*.iml
+*.ipr
+*.iws
+
+# Ignore Eclipse files
+.project
+.classpath
+.settings/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Ignore environment variables and credentials
+*.env
+.env.local
+.env.*
+
+# Ignore IDE specific directories
+.vscode/
+
+# Ignore database files
+*.sql
+*.db
