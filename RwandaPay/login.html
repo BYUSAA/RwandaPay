@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title>Login</title>
     <style>
         body { background-color: white; color: black; }
         .form-container { background-color: yellow; padding: 20px; }
@@ -12,29 +12,24 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Register</h2>
-        <form id="registrationForm">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br>
+        <h2>Login</h2>
+        <form id="loginForm">
             <label for="phoneNumber">Phone Number:</label><br>
             <input type="text" id="phoneNumber" name="phoneNumber"><br>
             <label for="pin">PIN:</label><br>
             <input type="password" id="pin" name="pin"><br><br>
-            <button type="submit" class="btn">Register</button>
+            <button type="submit" class="btn">Login</button>
         </form>
     </div>
 
     <script>
-        document.getElementById('registrationForm').onsubmit = function(event) {
+        document.getElementById('loginForm').onsubmit = function(event) {
             event.preventDefault();
-            const name = document.getElementById('name').value;
             const phoneNumber = document.getElementById('phoneNumber').value;
             const pin = document.getElementById('pin').value;
 
-            fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phoneNumber, pin })
+            fetch('/api/login?phoneNumber=' + phoneNumber + '&pin=' + pin, {
+                method: 'POST'
             })
             .then(response => response.text())
             .then(data => alert(data));
