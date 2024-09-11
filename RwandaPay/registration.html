@@ -5,9 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <style>
-        body { background-color: white; color: black; }
-        .form-container { background-color: yellow; padding: 20px; }
-        .btn { background-color: black; color: yellow; padding: 10px; border: none; cursor: pointer; }
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            background-color: yellow;
+            padding: 20px;
+            margin: 50px auto;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            background-color: black;
+            color: yellow;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: yellow;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -15,11 +37,11 @@
         <h2>Register</h2>
         <form id="registrationForm">
             <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" required><br>
             <label for="phoneNumber">Phone Number:</label><br>
-            <input type="text" id="phoneNumber" name="phoneNumber"><br>
+            <input type="text" id="phoneNumber" name="phoneNumber" required><br>
             <label for="pin">PIN:</label><br>
-            <input type="password" id="pin" name="pin"><br><br>
+            <input type="password" id="pin" name="pin" required><br><br>
             <button type="submit" class="btn">Register</button>
         </form>
     </div>
@@ -37,8 +59,9 @@
                 body: JSON.stringify({ name, phoneNumber, pin })
             })
             .then(response => response.text())
-            .then(data => alert(data));
-        }
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        };
     </script>
 </body>
 </html>
