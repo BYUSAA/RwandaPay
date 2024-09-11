@@ -3,65 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-    <style>
-        body {
-            background-color: white;
-            color: black;
-            font-family: Arial, sans-serif;
-        }
-        .form-container {
-            background-color: yellow;
-            padding: 20px;
-            margin: 50px auto;
-            width: 300px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .btn {
-            background-color: black;
-            color: yellow;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        .btn:hover {
-            background-color: yellow;
-            color: black;
-        }
-    </style>
+    <title>RwandaPay - Registration</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="form-container">
-        <h2>Register</h2>
+    <div class="container">
+        <h2>Register for RwandaPay</h2>
         <form id="registrationForm">
-            <label for="name">Name:</label><br>
+            <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
-            <label for="phoneNumber">Phone Number:</label><br>
-            <input type="text" id="phoneNumber" name="phoneNumber" required><br>
-            <label for="pin">PIN:</label><br>
-            <input type="password" id="pin" name="pin" required><br><br>
-            <button type="submit" class="btn">Register</button>
+
+            <label for="phone">Phone Number (+250):</label>
+            <input type="text" id="phone" name="phone" required><br>
+
+            <label for="pin">PIN:</label>
+            <input type="password" id="pin" name="pin" required><br>
+
+            <button type="submit">Register</button>
         </form>
+        <a href="Login.html">Already have an account? Login</a>
     </div>
-
-    <script>
-        document.getElementById('registrationForm').onsubmit = function(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const pin = document.getElementById('pin').value;
-
-            fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phoneNumber, pin })
-            })
-            .then(response => response.text())
-            .then(data => alert(data))
-            .catch(error => console.error('Error:', error));
-        };
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>

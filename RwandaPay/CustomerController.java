@@ -1,38 +1,41 @@
+package com.rwandapay.controller;
+
+import com.rwandapay.model.Customer;
+import com.rwandapay.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customers")
 public class CustomerController {
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerRepository customerRepository;
 
+    // Register new customer
     @PostMapping("/register")
-    public ResponseEntity<String> registerCustomer(@RequestBody Customer customer) {
-        customerService.registerCustomer(customer);
-        return ResponseEntity.ok("Customer registered successfully.");
+    public String registerCustomer(@RequestBody Customer customer) {
+        if (customerRepository.findByPhoneNumber(customer.getPhoneNumber()).isPresent()) {
+            return "Customer already registered!";
+        }
+        customerRepository.save(customer);
+        return "Registration successful!";
     }
 
+    // Login customer
     @PostMapping("/login")
-    public ResponseEntity<String> loginCustomer(@RequestParam String phoneNumber, @RequestParam int pin) {
-        customerService.login(phoneNumber, pin);
-        return ResponseEntity.ok("Login successful.");
-    }
-
-    @GetMapping("/balance")
-    public ResponseEntity<Double> getBalance(@RequestParam String phoneNumber) {
-        double balance = customerService.getBalance(phoneNumber);
-        return ResponseEntity.ok(balance);
-    }
-
-    @GetMapping("/profile")
-    public ResponseEntity<Customer> getProfile(@RequestParam String phoneNumber) {
-        Customer customer = customerService.getProfile(phoneNumber);
-        return ResponseEntity.ok(customer);
-    }
-
-    @PostMapping("/send-money")
-    public ResponseEntity<String> sendMoney(@RequestParam String senderPhone, @RequestParam int senderPin,
-                                            @RequestParam double amount) {
-        String response = customerService.sendMoney(senderPhone, senderPin, amount);
-        return ResponseEntity.ok(response);
+    public String loginCustomer(@RequestParam String phoneNumber, @RequestParam String pin) {
+        Optional<Customer> customerOpt = customerRepository.findByPhoneNumber(phoneNumber);
+        if (customerOpt.isPresent()) {
+            Customer customer = customerOpt.get();
+            if (customer.getPin().equals(pin)) {
+                return "Login successful!";
+            } else {
+                return "Incorrect PIN!";
+            }
+        }
+        return "Customer not found!";
     }
 }

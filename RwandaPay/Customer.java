@@ -1,24 +1,17 @@
-@Entity
-@Table(name = "customers")
-public class Customer {
+package com.rwandapay.model;
 
+import javax.persistence.*;
+
+@Entity
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     private String name;
     private String phoneNumber;
-    private int pin;
-    private double balance;
-
-    public Customer() {}
-
-    public Customer(String name, String phoneNumber, int pin, double balance) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.pin = pin;
-        this.balance = balance;
-    }
+    private String pin;
+    private double balance = 10000000.0; // Initial balance
 
     // Getters and Setters
 }
