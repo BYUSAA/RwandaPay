@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .profile-container {
+            padding: 20px;
+            margin: 50px auto;
+            width: 300px;
+            background-color: yellow;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            background-color: black;
+            color: yellow;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: yellow;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Profile</h2>
+        <p id="profileInfo"></p>
+        <button class="btn" onclick="getProfile()">View Profile</button>
+    </div>
+
+    <script>
+        function getProfile() {
+            const phoneNumber = prompt("Enter your phone number:");
+            
+            fetch('/api/profile?phoneNumber=' + phoneNumber)
+            .then(response => response.json())
+            .then(data => {
+                const profileInfo = `Name: ${data.name}<br>Phone Number: ${data.phoneNumber}`;
+                document.getElementById('profileInfo').innerHTML = profileInfo;
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
