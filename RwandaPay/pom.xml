@@ -1,29 +1,29 @@
 <dependencies>
-    <!-- Spring Boot Starter for REST APIs -->
+    <!-- Spring Boot Starter Web -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- Spring Data JPA for Database Connection -->
+    <!-- Spring Boot Starter Data JPA -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
-    <!-- PostgreSQL Driver -->
+    <!-- PostgreSQL Driver (Use MySQL if preferred) -->
     <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
     </dependency>
 
-    <!-- MySQL Driver (Optional) -->
+    <!-- Optional: Redis for Caching -->
     <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
 
-    <!-- Lombok for Boilerplate Code -->
+    <!-- Lombok for reducing boilerplate code -->
     <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>

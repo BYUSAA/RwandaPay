@@ -5,7 +5,7 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public Customer registerCustomer(Customer customer) {
-        customer.setBalance(10000000.0); // Initial balance
+        customer.setBalance(10000000.0);  // Initial balance
         return customerRepository.save(customer);
     }
 
