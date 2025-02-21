@@ -40,8 +40,6 @@
     </div>
 
     <script>
-        function getProfile() {
-            const phoneNumber = prompt("Enter your phone number:");
             
             fetch('/api/profile?phoneNumber=' + phoneNumber)
             .then(response => response.json())
