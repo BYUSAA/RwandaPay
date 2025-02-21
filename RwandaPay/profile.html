@@ -40,6 +40,8 @@
     </div>
 
     <script>
+        function getProfile() {
+            
             
             fetch('/api/profile?phoneNumber=' + phoneNumber)
             .then(response => response.json())
