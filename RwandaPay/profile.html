@@ -40,7 +40,12 @@
     </div>
 
     <script>
-        a => {
+        function getProfile() {
+            const phoneNumber = prompt("Enter your phone number:");
+            
+            fetch('/api/profile?phoneNumber=' + phoneNumber)
+            .then(response => response.json())
+            .then(data => {
                 const profileInfo = `Name: ${data.name}<br>Phone Number: ${data.phoneNumber}`;
                 document.getElementById('profileInfo').innerHTML = profileInfo;
             })
